@@ -3,7 +3,6 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  CardActions,
   Button,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -14,8 +13,11 @@ export const FeatureCard = () => {
   const [data, setData] = useState("No result");
 
   const onClickQrScanner = () => {
-    console.log("truwe");
     setScanning(true);
+  };
+
+  const onClickBack = () => {
+    setScanning(false);
   };
 
   return (
@@ -42,7 +44,22 @@ export const FeatureCard = () => {
         </Button>
       ) : (
         <Card sx={{ maxWidth: 345 }}>
-          <QrReader constraints={{} as any}></QrReader>
+          <QrReader
+            constraints={{ facingMode: "environment" }}
+            onResult={(result, error) => {
+              if (result) {
+                setData(result.getText());
+              }
+
+              if (!!error) {
+                console.info(error);
+              }
+            }}
+          ></QrReader>
+          <p>{data}</p>
+          <Button variant="contained" onClick={onClickBack}>
+            Back
+          </Button>
         </Card>
       )}
     </>
