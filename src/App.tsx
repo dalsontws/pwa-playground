@@ -1,24 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Grid } from "@mui/material";
+import { FeatureCard } from "./components/FeatureCard";
+import { BarcodeScanningCard } from "./components/BarcodeScanningCard";
+import { QrScanningCard } from "./components/QrScanningCard";
 
 function App() {
+  const [qrScanning, setQrScanning] = useState(false);
+  const [barcodeScanning, setBarcodeScanning] = useState(false);
+  const [qrData, setQrData] = useState("No result");
+  const [barcodeData, setBarcodeData] = useState("No result");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={4}
+        padding={6}
+      >
+        {!qrScanning ? (
+          <FeatureCard
+            onClick={setQrScanning}
+            imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+          />
+        ) : (
+          <QrScanningCard
+            qrData={qrData}
+            setQrData={setQrData}
+            setQrScanning={setQrScanning}
+          />
+        )}
+
+        {!barcodeScanning ? (
+          <FeatureCard
+            onClick={setBarcodeScanning}
+            imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/UPC-A-036000291452.svg/2560px-UPC-A-036000291452.svg.png"
+          />
+        ) : (
+          <BarcodeScanningCard
+            barcodeData={barcodeData}
+            setBarcodeData={setBarcodeData}
+            setBarcodeScanning={setBarcodeScanning}
+          />
+        )}
+      </Grid>
     </div>
   );
 }
