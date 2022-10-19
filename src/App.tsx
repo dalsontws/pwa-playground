@@ -25,6 +25,7 @@ function App() {
           <FeatureCard
             onClick={setQrScanning}
             imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+            scannerType="QR"
           />
         ) : (
           <QrScanningCard
@@ -38,11 +39,13 @@ function App() {
           <FeatureCard
             onClick={setBarcodeScanning}
             imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/UPC-A-036000291452.svg/2560px-UPC-A-036000291452.svg.png"
+            scannerType="Barcode"
           />
         ) : (
           <BarcodeScanningCard
             barcodeData={barcodeData}
             setBarcodeData={setBarcodeData}
+            barcodeScanning={barcodeScanning}
             setBarcodeScanning={setBarcodeScanning}
           />
         )}

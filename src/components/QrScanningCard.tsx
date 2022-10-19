@@ -1,6 +1,5 @@
 import { Card, Button } from "@mui/material";
 import React from "react";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import { QrReader } from "react-qr-reader";
 
 type QrScanningCardProps = {

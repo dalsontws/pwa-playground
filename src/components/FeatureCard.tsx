@@ -4,19 +4,17 @@ import {
   CardContent,
   Typography,
   Button,
-  Grid,
 } from "@mui/material";
-import React, { useState } from "react";
-import { QrReader } from "react-qr-reader";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import React from "react";
 
 type FeatureCardProps = {
   onClick: (arg: boolean) => void;
   imageUrl: string;
+  scannerType: "QR" | "Barcode";
 };
 
 export const FeatureCard = (props: FeatureCardProps) => {
-  const { onClick, imageUrl } = props;
+  const { onClick, imageUrl, scannerType } = props;
 
   return (
     <Button onClick={() => onClick(true)}>
@@ -30,10 +28,10 @@ export const FeatureCard = (props: FeatureCardProps) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Scan QR
+            Scan {scannerType}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Click here to scan a QR
+            Click here to scan a {scannerType}
           </Typography>
         </CardContent>
       </Card>
