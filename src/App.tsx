@@ -19,6 +19,7 @@ function App() {
         justifyContent="center"
         alignItems="center"
         spacing={4}
+        padding={6}
       >
         {!qrScanning ? (
           <FeatureCard
