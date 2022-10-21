@@ -1,5 +1,6 @@
 # PWA Playground
 
+<a name="readme-top"></a>
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -73,7 +74,6 @@ This project is spawned due to the need to explore the use of PWA ahead of an ex
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
