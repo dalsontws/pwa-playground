@@ -4,37 +4,59 @@ import {
   CardContent,
   Typography,
   Button,
+  TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 type FeatureCardProps = {
-  onClick: (arg: boolean) => void;
+  onClick: (arg: string) => void;
   imageUrl: string;
-  scannerType: "QR" | "Barcode";
 };
 
 export const FeatureCard = (props: FeatureCardProps) => {
-  const { onClick, imageUrl, scannerType } = props;
+  const { onClick, imageUrl } = props;
+
+  const [userName, setUserName] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(event.target.value);
+  };
 
   return (
-    <Button onClick={() => onClick(true)}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          alt="qr"
-          height="300"
-          width="300"
-          image={imageUrl}
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="qr"
+        height="300"
+        width="300"
+        image={imageUrl}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Save your name
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Fill in your name
+        </Typography>
+        <TextField
+          id="outlined-basic"
+          variant="outlined"
+          value={userName}
+          onChange={handleChange}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Scan {scannerType}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Click here to scan a {scannerType}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Button>
+        <div>
+          <Button
+            variant="contained"
+            onClick={() => {
+              onClick(userName);
+              setUserName("");
+              //TODO: push to top of screen
+            }}
+          >
+            Save
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
