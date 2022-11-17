@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { ScanningFeatureCard } from "./components/ScanningFeatureCard";
 import { BarcodeScanningCard } from "./components/BarcodeScanningCard";
 import { QrScanningCard } from "./components/QrScanningCard";
-import { FeatureCard } from "./components/FeatureCard";
-import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
-
-const userNameAtom = atomWithStorage("userName", "you");
 
 function App() {
   const [qrScanning, setQrScanning] = useState(false);
@@ -16,12 +11,8 @@ function App() {
   const [qrData, setQrData] = useState("No result");
   const [barcodeData, setBarcodeData] = useState("No result");
 
-  const [userName, setUserName] = useAtom(userNameAtom);
   return (
     <div className="App">
-      <Typography align="center" gutterBottom variant="h3" component="div">
-        Hello {userName !== "" ? userName : "you"}!
-      </Typography>
       <Grid
         container
         direction="column"
@@ -58,11 +49,6 @@ function App() {
             setBarcodeScanning={setBarcodeScanning}
           />
         )}
-
-        <FeatureCard
-          onClick={setUserName}
-          imageUrl="https://storage.googleapis.com/candycode/jotai/jotai-mascot.png"
-        ></FeatureCard>
       </Grid>
     </div>
   );
